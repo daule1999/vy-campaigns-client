@@ -1,0 +1,90 @@
+.campaigns-page, .campaign-new-page, .campaign-detail-page { max-width: 1200px; margin: 0 auto; }
+
+.campaign-link { color: var(--accent-primary); text-decoration: none; font-weight: 500; }
+.campaign-link:hover { text-decoration: underline; }
+
+.action-btns { display: flex; gap: 0.25rem; }
+
+.campaign-form { display: flex; flex-direction: column; gap: 1.25rem; max-width: 600px; }
+.form-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1rem; }
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.header-with-back { display: flex; align-items: flex-start; gap: 1rem; }
+
+.status-badge-large { font-size: 0.875rem; padding: 0.5rem 1rem; }
+
+.campaign-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-card { padding: 1.25rem; text-align: center; }
+.info-label { font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.info-value { font-size: 1.5rem; font-weight: 600; }
+.info-value.success { color: var(--accent-primary); }
+.info-value.danger { color: var(--accent-red); }
+
+.section-header { display: flex; justify-content: space-between; align-items: center; }
+.section-header h2 { display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; }
+
+.contacts-select-list { max-height: 400px; overflow-y: auto; }
+
+.contact-select-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+}
+.contact-select-item:hover { background: var(--bg-hover); }
+.contact-select-item input { width: 18px; height: 18px; accent-color: var(--accent-primary); }
+.contact-name { flex: 1; font-weight: 500; }
+.contact-phone { color: var(--text-muted); font-size: 0.875rem; }
+
+.empty-text { text-align: center; padding: 2rem; color: var(--text-muted); }
+.loading-page { padding: 4rem; text-align: center; color: var(--text-muted); }
+
+.contacts-modal-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.contact-count { font-size: 0.875rem; color: var(--text-muted); }
+
+.add-contacts-form { min-height: 200px; }
+
+.form-helper {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.form-helper.warning {
+  color: var(--accent-orange);
+  margin-top: 1rem;
+}
+
+.contact-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.contact-option .contact-name { font-weight: 500; }
+.contact-option .contact-phone { color: var(--text-muted); font-size: 0.875rem; }
