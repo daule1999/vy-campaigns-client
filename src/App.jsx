@@ -28,6 +28,9 @@ import Applications from './features/products/Applications';
 import ApplicationDetail from './features/products/ApplicationDetail';
 import Workqueue from './features/workqueue/Workqueue';
 
+// Superadmin Tools
+import WhatsAppTesting from './pages/WhatsAppTesting';
+
 import { Box, CircularProgress } from '@mui/material';
 
 // Protected route wrapper
@@ -108,6 +111,9 @@ function App() {
         <Route path="/products/:productId/applications" element={<ProtectedRoute permission="applications:read"><Applications /></ProtectedRoute>} />
         <Route path="/applications/:id" element={<ProtectedRoute permission="applications:read"><ApplicationDetail /></ProtectedRoute>} />
         <Route path="/workqueue" element={<ProtectedRoute permission="workqueue:access"><Workqueue /></ProtectedRoute>} />
+        
+        {/* Superadmin Tools */}
+        <Route path="/admin/whatsapp-testing" element={<ProtectedRoute><WhatsAppTesting /></ProtectedRoute>} />
         
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

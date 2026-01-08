@@ -33,7 +33,8 @@ import {
   Key,
   UserCog,
   Package,
-  ListTodo
+  ListTodo,
+  TestTube
 } from 'lucide-react';
 import useAuthStore from '../../store/authStore';
 import config from '../../config';
@@ -55,6 +56,7 @@ const navItems = [
   { path: '/admin/users', icon: UserCog, label: 'Users', permission: 'admin:users' },
   { path: '/admin/groups', icon: Shield, label: 'Groups', permission: 'rbac:read' },
   { path: '/admin/permissions', icon: Key, label: 'Permissions', permission: 'rbac:read' },
+  { path: '/admin/whatsapp-testing', icon: TestTube, label: 'WhatsApp Testing', superadminOnly: true },
 ];
 
 export default function Layout({ children }) {
@@ -82,6 +84,7 @@ export default function Layout({ children }) {
   // Filter nav items based on permissions
   const filteredNavItems = navItems.filter(item => {
     if (item.divider) return true;
+    if (item.superadminOnly) return isSuperAdmin;
     if (!item.permission) return true;
     return isSuperAdmin || hasPermission(item.permission);
   });
