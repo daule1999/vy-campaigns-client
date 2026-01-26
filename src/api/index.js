@@ -227,6 +227,161 @@ export const applicationsApi = {
     rejectStep: (applicationId, stepId, data) => api.post(`/applications/${applicationId}/steps/${stepId}/reject`, data),
 };
 
+// ============================================
+// NEW INTERAKT-LIKE FEATURES
+// ============================================
+
+// Teams API
+export const teamsApi = {
+    getAll: (params = {}) => api.get('/teams', { params }),
+    getById: (id) => api.get(`/teams/${id}`),
+    create: (data) => api.post('/teams', data),
+    update: (id, data) => api.put(`/teams/${id}`, data),
+    delete: (id) => api.delete(`/teams/${id}`),
+    // Members
+    getMembers: (teamId) => api.get(`/teams/${teamId}/members`),
+    addMembers: (teamId, userIds) => api.post(`/teams/${teamId}/members`, { userIds }),
+    removeMember: (teamId, userId) => api.delete(`/teams/${teamId}/members/${userId}`),
+    setLeads: (teamId, leadIds) => api.put(`/teams/${teamId}/leads`, { leadIds }),
+};
+
+// Agents API
+export const agentsApi = {
+    getAll: (params = {}) => api.get('/agents', { params }),
+    getById: (id) => api.get(`/agents/${id}`),
+    invite: (data) => api.post('/agents/invite', data),
+    update: (id, data) => api.put(`/agents/${id}`, data),
+    delete: (id) => api.delete(`/agents/${id}`),
+    resendInvitation: (id) => api.post(`/agents/${id}/resend-invitation`),
+    activate: (id) => api.post(`/agents/${id}/activate`),
+    deactivate: (id) => api.post(`/agents/${id}/deactivate`),
+    setRole: (id, roleId) => api.put(`/agents/${id}/role`, { roleId }),
+    getStats: (id, params = {}) => api.get(`/agents/${id}/stats`, { params }),
+};
+
+// Roles API
+export const rolesApi = {
+    getAll: () => api.get('/roles'),
+    getById: (id) => api.get(`/roles/${id}`),
+    create: (data) => api.post('/roles', data),
+    update: (id, data) => api.put(`/roles/${id}`, data),
+    delete: (id) => api.delete(`/roles/${id}`),
+    getPermissions: (roleId) => api.get(`/roles/${roleId}/permissions`),
+    setPermissions: (roleId, permissionIds) => api.put(`/roles/${roleId}/permissions`, { permissionIds }),
+};
+
+// Permissions API
+export const permissionsApi = {
+    getAll: () => api.get('/permissions'),
+    getCategories: () => api.get('/permissions/categories'),
+};
+
+// Quick Replies API
+export const quickRepliesApi = {
+    getAll: (params = {}) => api.get('/quick-replies', { params }),
+    getById: (id) => api.get(`/quick-replies/${id}`),
+    create: (data) => api.post('/quick-replies', data),
+    update: (id, data) => api.put(`/quick-replies/${id}`, data),
+    delete: (id) => api.delete(`/quick-replies/${id}`),
+    getCategories: () => api.get('/quick-replies/categories'),
+};
+
+// Inbox Settings API
+export const inboxSettingsApi = {
+    get: () => api.get('/inbox-settings'),
+    update: (data) => api.put('/inbox-settings', data),
+    // Welcome Message
+    getWelcomeMessage: () => api.get('/inbox-settings/welcome-message'),
+    updateWelcomeMessage: (data) => api.put('/inbox-settings/welcome-message', data),
+    // Out of Office
+    getOutOfOffice: () => api.get('/inbox-settings/out-of-office'),
+    updateOutOfOffice: (data) => api.put('/inbox-settings/out-of-office', data),
+    // Delayed Response
+    getDelayedResponse: () => api.get('/inbox-settings/delayed-response'),
+    updateDelayedResponse: (data) => api.put('/inbox-settings/delayed-response', data),
+    // Working Hours
+    getWorkingHours: () => api.get('/inbox-settings/working-hours'),
+    updateWorkingHours: (data) => api.put('/inbox-settings/working-hours', data),
+    // Auto Assignment
+    getAutoAssignment: () => api.get('/inbox-settings/auto-assignment'),
+    updateAutoAssignment: (data) => api.put('/inbox-settings/auto-assignment', data),
+};
+
+// Workflows API (Automation)
+export const workflowsApi = {
+    getAll: (params = {}) => api.get('/workflows', { params }),
+    getById: (id) => api.get(`/workflows/${id}`),
+    create: (data) => api.post('/workflows', data),
+    update: (id, data) => api.put(`/workflows/${id}`, data),
+    delete: (id) => api.delete(`/workflows/${id}`),
+    activate: (id) => api.post(`/workflows/${id}/activate`),
+    deactivate: (id) => api.post(`/workflows/${id}/deactivate`),
+    execute: (id, data) => api.post(`/workflows/${id}/execute`, data),
+    getExecutions: (id, params = {}) => api.get(`/workflows/${id}/executions`, { params }),
+    getExecutionLogs: (id, executionId) => api.get(`/workflows/${id}/executions/${executionId}`),
+    duplicate: (id) => api.post(`/workflows/${id}/duplicate`),
+    // Nodes & Edges
+    getNodes: (id) => api.get(`/workflows/${id}/nodes`),
+    updateNodes: (id, nodes) => api.put(`/workflows/${id}/nodes`, { nodes }),
+    getEdges: (id) => api.get(`/workflows/${id}/edges`),
+    updateEdges: (id, edges) => api.put(`/workflows/${id}/edges`, { edges }),
+};
+
+// Tags API
+export const tagsApi = {
+    getAll: (params = {}) => api.get('/tags', { params }),
+    getById: (id) => api.get(`/tags/${id}`),
+    create: (data) => api.post('/tags', data),
+    update: (id, data) => api.put(`/tags/${id}`, data),
+    delete: (id) => api.delete(`/tags/${id}`),
+    // Bulk operations
+    bulkAssign: (tagId, contactIds) => api.post(`/tags/${tagId}/assign`, { contactIds }),
+    bulkRemove: (tagId, contactIds) => api.post(`/tags/${tagId}/remove`, { contactIds }),
+    getContacts: (tagId, params = {}) => api.get(`/tags/${tagId}/contacts`, { params }),
+};
+
+// Contact Fields API (Custom Fields)
+export const contactFieldsApi = {
+    getAll: (params = {}) => api.get('/contact-fields', { params }),
+    getById: (id) => api.get(`/contact-fields/${id}`),
+    create: (data) => api.post('/contact-fields', data),
+    update: (id, data) => api.put(`/contact-fields/${id}`, data),
+    delete: (id) => api.delete(`/contact-fields/${id}`),
+    reorder: (fieldIds) => api.put('/contact-fields/reorder', { fieldIds }),
+};
+
+// Events API
+export const eventsApi = {
+    getAll: (params = {}) => api.get('/events', { params }),
+    getById: (id) => api.get(`/events/${id}`),
+    track: (data) => api.post('/events/track', data),
+    // Definitions
+    getDefinitions: () => api.get('/events/definitions'),
+    createDefinition: (data) => api.post('/events/definitions', data),
+    updateDefinition: (id, data) => api.put(`/events/definitions/${id}`, data),
+    deleteDefinition: (id) => api.delete(`/events/definitions/${id}`),
+    // Analytics
+    getAnalytics: (params = {}) => api.get('/events/analytics', { params }),
+    getByContact: (contactId, params = {}) => api.get(`/events/contacts/${contactId}`, { params }),
+};
+
+// Analytics API
+export const analyticsApi = {
+    // Conversation Analytics
+    getConversationStats: (params = {}) => api.get('/analytics/conversations', { params }),
+    getResponseTimes: (params = {}) => api.get('/analytics/response-times', { params }),
+    getResolutionTimes: (params = {}) => api.get('/analytics/resolution-times', { params }),
+    // Agent Performance
+    getAgentStats: (params = {}) => api.get('/analytics/agents', { params }),
+    getAgentPerformance: (agentId, params = {}) => api.get(`/analytics/agents/${agentId}`, { params }),
+    // Campaign Analytics
+    getCampaignStats: (campaignId, params = {}) => api.get(`/campaigns/${campaignId}/analytics`, { params }),
+    getCampaignSummary: (params = {}) => api.get('/analytics/campaigns/summary', { params }),
+    // Exports
+    exportConversations: (params = {}) => api.get('/analytics/conversations/export', { params, responseType: 'blob' }),
+    exportAgentStats: (params = {}) => api.get('/analytics/agents/export', { params, responseType: 'blob' }),
+};
+
 export default api;
 
 

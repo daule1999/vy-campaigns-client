@@ -31,6 +31,24 @@ import Workqueue from './features/workqueue/Workqueue';
 // Superadmin Tools
 import WhatsAppTesting from './pages/WhatsAppTesting';
 
+// NEW INTERAKT-LIKE FEATURES
+import Teams from './features/teams/Teams';
+import Agents from './features/agents/Agents';
+import InboxSettings from './features/inbox-settings/InboxSettings';
+import QuickReplies from './features/quick-replies/QuickReplies';
+import Workflows from './features/workflows/Workflows';
+import Tags from './features/tags/Tags';
+import Events from './features/events/Events';
+import ConversationAnalytics from './features/analytics/ConversationAnalytics';
+import AgentPerformance from './features/analytics/AgentPerformance';
+
+// Settings Pages
+import CustomFields from './pages/Settings/CustomFields';
+import TagManagement from './pages/Settings/TagManagement';
+
+// Additional Pages
+import ContactDetail from './pages/Contacts/ContactDetail';
+
 import { Box, CircularProgress } from '@mui/material';
 
 // Protected route wrapper
@@ -114,6 +132,27 @@ function App() {
         
         {/* Superadmin Tools */}
         <Route path="/admin/whatsapp-testing" element={<ProtectedRoute><WhatsAppTesting /></ProtectedRoute>} />
+        
+        {/* NEW INTERAKT-LIKE FEATURES */}
+        {/* Team & Agent Management */}
+        <Route path="/teams" element={<ProtectedRoute permission="teams:read"><Teams /></ProtectedRoute>} />
+        <Route path="/agents" element={<ProtectedRoute permission="agents:read"><Agents /></ProtectedRoute>} />
+        
+        {/* Automation Settings */}
+        <Route path="/settings/inbox" element={<ProtectedRoute permission="inbox_settings:read"><InboxSettings /></ProtectedRoute>} />
+        <Route path="/settings/quick-replies" element={<ProtectedRoute permission="quick_replies:read"><QuickReplies /></ProtectedRoute>} />
+        <Route path="/workflows" element={<ProtectedRoute permission="workflows:read"><Workflows /></ProtectedRoute>} />
+        
+        {/* Contact Management */}
+        <Route path="/settings/tags" element={<ProtectedRoute permission="tags:read"><Tags /></ProtectedRoute>} />
+        <Route path="/settings/tags/manage" element={<ProtectedRoute permission="tags:write"><TagManagement /></ProtectedRoute>} />
+        <Route path="/settings/custom-fields" element={<ProtectedRoute permission="contact_fields:read"><CustomFields /></ProtectedRoute>} />
+        <Route path="/persons/:id" element={<ProtectedRoute permission="persons:read"><ContactDetail /></ProtectedRoute>} />
+        
+        {/* Events & Analytics */}
+        <Route path="/settings/events" element={<ProtectedRoute permission="events:read"><Events /></ProtectedRoute>} />
+        <Route path="/analytics/conversations" element={<ProtectedRoute permission="analytics:read"><ConversationAnalytics /></ProtectedRoute>} />
+        <Route path="/analytics/agents" element={<ProtectedRoute permission="analytics:read"><AgentPerformance /></ProtectedRoute>} />
         
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
